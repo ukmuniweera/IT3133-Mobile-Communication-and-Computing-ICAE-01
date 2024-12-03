@@ -2,11 +2,12 @@ import '../assets/CSS/layout.css';
 import React, { useState } from 'react';
 
 export default function Product({ flower, addToCart }) {
-    const [quantity, setQuantity] = useState("0");
+    const [quantity, setQuantity] = useState(0);
 
     const handleAddToCart = () => {
-        if (quantity >= 0) {
-            addToCart();
+        if (quantity > 0) {
+            addToCart(flower, quantity);
+            setQuantity(0);
         }
     };
 
@@ -14,7 +15,7 @@ export default function Product({ flower, addToCart }) {
         <div className="grid-item">
             <div className="card">
                 <img
-                    src={`../assets/image/${flower.img}`}
+                    src={require(`../assets/image/${flower.img}`)}
                     alt={flower.name}
                 />
                 <div className="card-body">
